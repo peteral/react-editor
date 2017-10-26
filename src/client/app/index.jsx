@@ -1,15 +1,27 @@
-import React from 'react'
-import { render } from 'react-dom'
-import AwesomeComponent from './AwesomeComponent.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Editor, EditorState} from 'draft-js';
 
-class App extends React.Component {
-    render () {
-        return  (
-            <div>
-                <AwesomeComponent/>
-            </div>
-        )
-    }
+class MyEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {editorState: EditorState.createEmpty()};
+    this.onChange = (editorState) => {
+      this.setState({editorState})
+      
+      console.log(editorState)
+    };
+  }
+  render() {
+    return (
+        <div className="editor">
+            <Editor editorState={this.state.editorState} onChange={this.onChange} />
+        </div>
+    );
+  }
 }
 
-render(<App/>, document.getElementById('app'))
+ReactDOM.render(
+  <MyEditor />,
+  document.getElementById('app')
+);
