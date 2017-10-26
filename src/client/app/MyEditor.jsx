@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils, Modifier } from 'draft-js';
+import ReactJson from 'react-json-view'
 
 class MyEditor extends React.Component {
   constructor(props) {
@@ -23,11 +24,21 @@ class MyEditor extends React.Component {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'))
   }
 
+  _onLinkKlick() {
+
+  }
+
   render() {
     return (
-      <div className="editor">
-        <button className="editorButton" onClick={this._onBoldClick.bind(this)}>B</button>
-        <Editor editorState={this.state.editorState} onChange={this.onChange} handleKeyCommand={this.handleKeyCommand} />
+      <div>
+        <div className="editor">
+          <button className="editorButton" onClick={this._onBoldClick.bind(this)}>B</button>
+          <button className="editorButton" onClick={this._onLinkKlick.bind(this)}>K</button>
+          <Editor editorState={this.state.editorState} onChange={this.onChange} handleKeyCommand={this.handleKeyCommand} />
+        </div>
+        <div>
+          <pre>{JSON.stringify(this.state.editorState.getCurrentContent(), null, 2)}</pre>
+        </div>
       </div>
     );
   }
