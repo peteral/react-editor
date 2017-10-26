@@ -11,3 +11,19 @@
     border: 1px solid grey;
     padding: 6px;
 }
+
+.editorButton  {
+    background-color: rgba(76, 175, 79, 0); /* Green */
+    border: none;
+    color: rgb(212, 209, 209);
+    padding: 4px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editorButton:hover {
+    color: rgb(0, 0, 0);    
+}
